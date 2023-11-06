@@ -1,0 +1,30 @@
+#  Copyright (c) 2022 Jonas Mahler
+
+#  This file is part of realsense2lidar.
+
+#  realsense2lidar is free software: you can redistribute it and/or modify it under the terms 
+#  of the GNU General Public License as published by the Free Software Foundation, 
+#  either version 3 of the License, or (at your option) any later version.
+
+#  realsense2lidar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+#  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+#  See the GNU General Public License for more details.
+
+#  You should have received a copy of the GNU General Public License along 
+#  with realsense2lidar. If not, see <https://www.gnu.org/licenses/>. 
+
+from launch import LaunchDescription
+from launch_ros.actions import Node
+
+def generate_launch_description():
+    return LaunchDescription([
+        Node(
+            package='realsense2lidar',
+            executable='realsense2lidar_node',
+            name='realsense2lidar_node',
+            parameters= [
+            {'frame_id': 'lidar'},
+            {'topic_pointcloud_in': 'realsense2lidar/point_cloud_out'},
+            {'topic_pointcloud_out': 'realsense2lidar/point_cloud_realsense2lidar'}],
+        )
+    ])
